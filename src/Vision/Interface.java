@@ -8,7 +8,7 @@ import javax.swing.*;
 import net.miginfocom.swing.*;
 
 /**
- * @author unknown
+ * @author Vitor Fernandes
  */
 public class Interface extends JPanel {
     public Interface() {
