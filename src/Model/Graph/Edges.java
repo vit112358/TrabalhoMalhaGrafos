@@ -1,4 +1,4 @@
-package Control.Graph;
+package Model.Graph;
 
 import java.util.Objects;
 
