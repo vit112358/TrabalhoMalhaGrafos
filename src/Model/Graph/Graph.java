@@ -8,17 +8,25 @@ public class Graph {
     private String nome;
     private List<Vertex> vertices;
     private List<Edges> arestas;
-    private boolean tipoGrafo;
+    /*
+    * dirigido = true o grafo é dirigido
+    * caso o dirigido = false o grafo é não dirigido
+    * */
+    private boolean dirigido;
 
-    public Graph(int id, String nome, List<Vertex> vertices, List<Edges> arestas, boolean tipoGrafo) {
+    public Graph(int id, String nome, List<Vertex> vertices, List<Edges> arestas, boolean dirigido) {
         this.id = id;
         this.nome = nome;
         this.vertices = vertices;
         this.arestas = arestas;
-        this.tipoGrafo = tipoGrafo;
+        this.dirigido = dirigido;
     }
 
     public Graph() {
+    }
+
+    public Graph(boolean dirigido) {
+        this.dirigido = dirigido;
     }
 
     public int getId() {
@@ -53,12 +61,12 @@ public class Graph {
         this.arestas = arestas;
     }
 
-    public boolean isTipoGrafo() {
-        return tipoGrafo;
+    public boolean isDirigido() {
+        return dirigido;
     }
 
-    public void setTipoGrafo(boolean tipoGrafo) {
-        this.tipoGrafo = tipoGrafo;
+    public void setDirigido(boolean dirigido) {
+        this.dirigido = dirigido;
     }
 
     @Override
@@ -67,7 +75,7 @@ public class Graph {
         if (o == null || getClass() != o.getClass()) return false;
         Graph graph = (Graph) o;
         return id == graph.id &&
-                tipoGrafo == graph.tipoGrafo;
+                dirigido == graph.dirigido;
     }
 
     @Override
@@ -80,7 +88,7 @@ public class Graph {
         return "Graph{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
-                ", tipoGrafo=" + tipoGrafo +
+                ", dirigido=" + dirigido +
                 '}';
     }
 }

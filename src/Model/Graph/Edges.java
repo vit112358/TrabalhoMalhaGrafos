@@ -6,11 +6,13 @@ public class Edges {
     private int id;
     private Vertex origem;
     private Vertex destino;
+    private Long peso;
 
-    public Edges(int id, Vertex origem, Vertex destino) {
+    public Edges(int id, Vertex origem, Vertex destino, Long peso) {
         this.id = id;
         this.origem = origem;
         this.destino = destino;
+        this.peso = peso;
     }
 
     public Edges() {
@@ -40,13 +42,12 @@ public class Edges {
         this.destino = destino;
     }
 
-    @Override
-    public String toString() {
-        return "Edges{" +
-                "id=" + id +
-                ", origem=" + origem +
-                ", destino=" + destino +
-                '}';
+    public Long getPeso() {
+        return peso;
+    }
+
+    public void setPeso(Long peso) {
+        this.peso = peso;
     }
 
     @Override
@@ -60,5 +61,15 @@ public class Edges {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Edges{" +
+                "id=" + id +
+                ", origem=" + origem.getNomeAeroporto() +
+                ", destino=" + destino.getNomeAeroporto() +
+                ", peso=" + peso +
+                '}';
     }
 }
