@@ -30,7 +30,6 @@ public class Leitura {
                     String[] valores = linha.split(" ");
                     t aux = new t(Integer.parseInt(valores[0]),Integer.parseInt(valores[1]), Integer.parseInt(valores[2]));
                     ts.add(aux);
-
                 }
             }
         } catch (FileNotFoundException ex) {
