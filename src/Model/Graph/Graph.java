@@ -1,12 +1,13 @@
 package Model.Graph;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class Graph {
     private int id;
     private String nome;
-    private List<Vertex> vertices;
+    private Map<String, Vertex> vertices;
     private List<Edges> arestas;
     /*
     * dirigido = true o grafo é dirigido
@@ -14,7 +15,7 @@ public class Graph {
     * */
     private boolean dirigido;
 
-    public Graph(int id, String nome, List<Vertex> vertices, List<Edges> arestas, boolean dirigido) {
+    public Graph(int id, String nome, Map<String, Vertex> vertices, List<Edges> arestas, boolean dirigido) {
         this.id = id;
         this.nome = nome;
         this.vertices = vertices;
@@ -45,11 +46,11 @@ public class Graph {
         this.nome = nome;
     }
 
-    public List<Vertex> getVertices() {
+    public Map<String, Vertex> getVertices() {
         return vertices;
     }
 
-    public void setVertices(List<Vertex> vertices) {
+    public void setVertices(Map<String, Vertex> vertices) {
         this.vertices = vertices;
     }
 

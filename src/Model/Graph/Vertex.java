@@ -1,53 +1,41 @@
 package Model.Graph;
 
+import Model.AuxStruct.Aeroporto;
+
 import java.util.Objects;
 
 public class Vertex {
-    private int id;
-    private String nomeAeroporto;
-
-    public Vertex(int id, String nomeAeroporto) {
-        this.id = id;
-        this.nomeAeroporto = nomeAeroporto;
-    }
+    private String id;
+    private Aeroporto aeroporto;
 
     public Vertex() {
     }
 
-    public int getId() {
+    public Vertex(String id, Aeroporto aeroporto) {
+        this.id = id;
+        this.aeroporto = aeroporto;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getNomeAeroporto() {
-        return nomeAeroporto;
+    public Aeroporto getAeroporto() {
+        return aeroporto;
     }
 
-    public void setNomeAeroporto(String nomeAeroporto) {
-        this.nomeAeroporto = nomeAeroporto;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Vertex vertex = (Vertex) o;
-        return id == vertex.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public void setAeroporto(Aeroporto aeroporto) {
+        this.aeroporto = aeroporto;
     }
 
     @Override
     public String toString() {
         return "Vertex{" +
-                "id=" + id +
-                ", nomeAeroporto='" + nomeAeroporto + '\'' +
+                "id=" + id +";"+ aeroporto.toString() +
                 '}';
     }
 }
