@@ -118,8 +118,6 @@ public class Leitura {
         char[] parteHoras = hora.toCharArray();
         int pHora = 0;
         int pMin = 0;
-        String aux;
-        String aux1;
         if(parteHoras[parteHoras.length-1] == 'P'){
             if(Integer.parseInt(hora.substring(0,hora.length()-3))+12 == 24){
                 pHora = 0;
@@ -131,9 +129,7 @@ public class Leitura {
             pHora = Integer.parseInt(hora.substring(0,hora.length()-3));
             pMin = Integer.parseInt(hora.substring(hora.length()-3,hora.length()-1));
         }
-
-        LocalTime horaLT = LocalTime.of(pHora,pMin);
-        return horaLT;
+        return  LocalTime.of(pHora,pMin);
     }
 
     private Aeroporto findAeroporto(String codAeroporto, Map<String, Vertex> vertices){
