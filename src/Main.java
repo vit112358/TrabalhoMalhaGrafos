@@ -11,7 +11,7 @@ public class Main {
 
         Leitura l = new Leitura();
 
-        File f = new File("C:\\Users\\vitor\\Downloads\\voos.txt");
+        File f = new File("C:\\Users\\vitor\\Documents\\NetBeansProjects\\TrabalhoED2\\voos.txt");
         
         l.readFile(f);
     }

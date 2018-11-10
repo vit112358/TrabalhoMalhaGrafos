@@ -2,9 +2,11 @@ package Control.IO;
 
 import Model.AuxStruct.Aeroporto;
 import Model.AuxStruct.Voo;
+import Model.Estrutura;
 import Model.GraphRota.Edges;
 import Model.GraphRota.Graph;
 import Model.GraphRota.Vertex;
+import Model.graphVoos.GraphVoo;
 
 import javax.swing.JOptionPane;
 import java.io.BufferedReader;
@@ -24,12 +26,14 @@ public class Leitura {
 
     private String tipoLeitura = "";
 
-    public Graph readFile(File caminho){
+    public Estrutura readFile(File caminho){
         String tipo;
         Map<String, Vertex> vertices = new HashMap<>();
         List<Edges> arestas = new ArrayList<>();
         Graph rota = new Graph(1,"rotas", vertices, arestas,false);
-
+        List<Voo> listaVoos = new ArrayList<>();
+        GraphVoo voos = new GraphVoo(2, "voos", listaVoos);
+        Estrutura estruturaGrafos = new Estrutura();
         try {
             try (BufferedReader meuBuffer = new BufferedReader(new FileReader(caminho))) {
                 String linha;
@@ -73,7 +77,7 @@ public class Leitura {
                                 LocalTime lt1 = converteStringToDateTime(valores[3]);
                                 LocalTime lt2 = converteStringToDateTime(valores[5]);
                                 Voo v = new Voo(valores[0],valores[1],findAeroporto(valores[2],vertices),lt1,findAeroporto(valores[4],vertices),lt2,Integer.parseInt(valores[7]));
-                                System.out.println(v.toString());
+                                listaVoos.add(v);
                             }
                             break;
                         default:
@@ -82,6 +86,9 @@ public class Leitura {
                 }
                 rota.setVertices(vertices);
                 rota.setArestas(arestas);
+                voos.setArestas(listaVoos);
+                estruturaGrafos.setRotas(rota);
+                estruturaGrafos.setVoos(voos);
             }
         } catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao ler o Caminho! "
@@ -90,7 +97,7 @@ public class Leitura {
         } catch (IOException ex) {
             Logger.getLogger(Leitura.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return rota;
+        return estruturaGrafos;
     }
 
     private String confereTipo(String linha){
@@ -114,11 +121,15 @@ public class Leitura {
         String aux;
         String aux1;
         if(parteHoras[parteHoras.length-1] == 'P'){
-            pHora = Integer.parseInt(hora.substring(0,hora.length()-3))+12;
+            if(Integer.parseInt(hora.substring(0,hora.length()-3))+12 == 24){
+                pHora = 0;
+            }else{
+                pHora = Integer.parseInt(hora.substring(0,hora.length()-3))+12;
+            }
             pMin = Integer.parseInt(hora.substring(hora.length()-3,hora.length()-1));
         }else{
-            pHora = Integer.parseInt(hora.substring(0,hora.length()-(3+1)+1));
-            pMin = Integer.parseInt(hora.substring(hora.length()-(3+1),hora.length()-1));
+            pHora = Integer.parseInt(hora.substring(0,hora.length()-3));
+            pMin = Integer.parseInt(hora.substring(hora.length()-3,hora.length()-1));
         }
 
         LocalTime horaLT = LocalTime.of(pHora,pMin);

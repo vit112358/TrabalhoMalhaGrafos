@@ -1,20 +1,21 @@
 package Model;
 
 import Model.GraphRota.Graph;
+import Model.graphVoos.GraphVoo;
 
 public class Estrutura {
 
     private Graph rotas;
-    private Graph voos;
+    private GraphVoo voos;
 
-    public Estrutura(Graph rotas, Graph voos) {
+    public Estrutura(Graph rotas, GraphVoo voos) {
         this.rotas = rotas;
         this.voos = voos;
     }
 
     public Estrutura() {
         this.rotas = new Graph(false);
-        this.voos = new Graph(true);
+        this.voos = new GraphVoo();
     }
 
     public Graph getRotas() {
@@ -25,11 +26,11 @@ public class Estrutura {
         this.rotas = rotas;
     }
 
-    public Graph getVoos() {
+    public GraphVoo getVoos() {
         return voos;
     }
 
-    public void setVoos(Graph voos) {
+    public void setVoos(GraphVoo voos) {
         this.voos = voos;
     }
 

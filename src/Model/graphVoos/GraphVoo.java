@@ -1,5 +1,7 @@
 package Model.graphVoos;
 
+import Model.AuxStruct.Voo;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -8,17 +10,15 @@ public class GraphVoo {
 
     private int id;
     private String nome;
-    private Map<String, VertexVoo> vertices;
-    private List<EdgesVoo> arestas;
+    private List<Voo> arestas;
 
-    public GraphVoo() {
-    }
-
-    public GraphVoo(int id, String nome, Map<String, VertexVoo> vertices, List<EdgesVoo> arestas) {
+    public GraphVoo(int id, String nome, List<Voo> arestas) {
         this.id = id;
         this.nome = nome;
-        this.vertices = vertices;
         this.arestas = arestas;
+    }
+
+    public GraphVoo() {
     }
 
     public int getId() {
@@ -37,20 +37,21 @@ public class GraphVoo {
         this.nome = nome;
     }
 
-    public Map<String, VertexVoo> getVertices() {
-        return vertices;
-    }
-
-    public void setVertices(Map<String, VertexVoo> vertices) {
-        this.vertices = vertices;
-    }
-
-    public List<EdgesVoo> getArestas() {
+    public List<Voo> getArestas() {
         return arestas;
     }
 
-    public void setArestas(List<EdgesVoo> arestas) {
+    public void setArestas(List<Voo> arestas) {
         this.arestas = arestas;
+    }
+
+    @Override
+    public String toString() {
+        return "GraphVoo{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", arestas=" + arestas +
+                '}';
     }
 
     @Override
@@ -64,15 +65,5 @@ public class GraphVoo {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "GraphVoo{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", vertices=" + vertices +
-                ", arestas=" + arestas +
-                '}';
     }
 }
