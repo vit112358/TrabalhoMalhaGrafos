@@ -1,4 +1,6 @@
-package Model.Graph;
+package Model;
+
+import Model.GraphRota.Graph;
 
 public class Estrutura {
 

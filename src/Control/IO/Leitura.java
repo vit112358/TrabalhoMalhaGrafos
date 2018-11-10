@@ -1,10 +1,10 @@
 package Control.IO;
 
 import Model.AuxStruct.Aeroporto;
-import Model.Graph.Edges;
-import Model.Graph.Graph;
-import Model.Graph.Vertex;
-import org.jetbrains.annotations.NotNull;
+import Model.AuxStruct.Voo;
+import Model.GraphRota.Edges;
+import Model.GraphRota.Graph;
+import Model.GraphRota.Vertex;
 
 import javax.swing.JOptionPane;
 import java.io.BufferedReader;
@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -68,7 +69,11 @@ public class Leitura {
                             break;
                         case("agenda"):
                             if(!(linha.startsWith("#"))){
-
+                                String[] valores = linha.split("\\s+");
+                                LocalTime lt1 = converteStringToDateTime(valores[3]);
+                                LocalTime lt2 = converteStringToDateTime(valores[5]);
+                                Voo v = new Voo(valores[0],valores[1],findAeroporto(valores[2],vertices),lt1,findAeroporto(valores[4],vertices),lt2,Integer.parseInt(valores[7]));
+                                System.out.println(v.toString());
                             }
                             break;
                         default:
@@ -88,7 +93,7 @@ public class Leitura {
         return rota;
     }
 
-    private String confereTipo(@NotNull String linha){
+    private String confereTipo(String linha){
         if (linha.contains("#Airport information - USA")){
             tipoLeitura = "aeroporto";
         }else if(linha.startsWith("!")){
@@ -100,5 +105,27 @@ public class Leitura {
         }
 
         return tipoLeitura;
+    }
+
+    private LocalTime converteStringToDateTime(String hora){
+        char[] parteHoras = hora.toCharArray();
+        int pHora = 0;
+        int pMin = 0;
+        String aux;
+        String aux1;
+        if(parteHoras[parteHoras.length-1] == 'P'){
+            pHora = Integer.parseInt(hora.substring(0,hora.length()-3))+12;
+            pMin = Integer.parseInt(hora.substring(hora.length()-3,hora.length()-1));
+        }else{
+            pHora = Integer.parseInt(hora.substring(0,hora.length()-(3+1)+1));
+            pMin = Integer.parseInt(hora.substring(hora.length()-(3+1),hora.length()-1));
+        }
+
+        LocalTime horaLT = LocalTime.of(pHora,pMin);
+        return horaLT;
+    }
+
+    private Aeroporto findAeroporto(String codAeroporto, Map<String, Vertex> vertices){
+        return vertices.get(codAeroporto).getAeroporto();
     }
 }

@@ -1,8 +1,6 @@
-package Model.Graph;
+package Model.GraphRota;
 
 import Model.AuxStruct.Aeroporto;
-
-import java.util.Objects;
 
 public class Vertex {
     private String id;

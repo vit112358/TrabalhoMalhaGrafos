@@ -1,4 +1,4 @@
-package Model.Graph;
+package Model.GraphRota;
 
 import java.util.Objects;
 

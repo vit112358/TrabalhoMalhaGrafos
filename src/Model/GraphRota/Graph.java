@@ -1,4 +1,4 @@
-package Model.Graph;
+package Model.GraphRota;
 
 import java.util.List;
 import java.util.Map;
@@ -86,7 +86,7 @@ public class Graph {
 
     @Override
     public String toString() {
-        return "Graph{" +
+        return "GraphRota{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", dirigido=" + dirigido +
