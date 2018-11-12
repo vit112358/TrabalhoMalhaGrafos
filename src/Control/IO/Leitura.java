@@ -69,7 +69,7 @@ public class Leitura {
                                 String[] valores = linha.split("\\s+");
                                 Vertex origem = vertices.get(valores[0]);
                                 Vertex destino = vertices.get(valores[1]);
-                                Edges aresta = new Edges(arestas.size()+1,origem,destino, (long)0);
+                                Edges aresta = new Edges(arestas.size()+1,origem,destino);
                                 arestas.add(aresta);
                             }
                             break;
