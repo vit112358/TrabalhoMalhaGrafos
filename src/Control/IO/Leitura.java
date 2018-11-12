@@ -1,5 +1,6 @@
 package Control.IO;
 
+import Control.GraphOP.Controls;
 import Control.GraphOP.Ponto;
 import Model.AuxStruct.Aeroporto;
 import Model.AuxStruct.Voo;
@@ -35,6 +36,7 @@ public class Leitura {
         List<Voo> listaVoos = new ArrayList<>();
         GraphVoo voos = new GraphVoo(2, listaVoos);
         Estrutura estruturaGrafos = new Estrutura();
+        Controls c = new Controls();
         try {
             try (BufferedReader meuBuffer = new BufferedReader(new FileReader(caminho))) {
                 String linha;
@@ -78,7 +80,10 @@ public class Leitura {
                                 String[] valores = linha.split("\\s+");
                                 LocalTime lt1 = converteStringToDateTime(valores[3]);
                                 LocalTime lt2 = converteStringToDateTime(valores[5]);
-                                Voo v = new Voo(valores[0],valores[1],findAeroporto(valores[2],vertices),lt1,findAeroporto(valores[4],vertices),lt2,Integer.parseInt(valores[7]));
+                                Aeroporto a1 = findAeroporto(valores[2],vertices);
+                                Aeroporto a2 = findAeroporto(valores[4],vertices);
+                                long distancia = c.distanciaPontos(a1.getPosition(),a2.getPosition());
+                                Voo v = new Voo(valores[0],valores[1],a1,lt1,a2,lt2,Integer.parseInt(valores[7]),distancia);
                                 listaVoos.add(v);
                             }
                             break;

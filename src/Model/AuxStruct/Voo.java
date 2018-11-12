@@ -1,5 +1,7 @@
 package Model.AuxStruct;
 
+import Control.GraphOP.Controls;
+
 import java.time.LocalTime;
 import java.util.Objects;
 
@@ -11,12 +13,13 @@ public class Voo {
     private Aeroporto destino;
     private LocalTime chegada;
     private int numeroParadas;
+    private long distancia;
 
     public Voo() {
     }
 
     public Voo(String linha, String voo, Aeroporto origem, LocalTime partida, Aeroporto destino,
-            LocalTime chegada, int numeroParadas) {
+            LocalTime chegada, int numeroParadas, long distancia) {
         this.linha = linha;
         this.voo = voo;
         this.origem = origem;
@@ -24,6 +27,7 @@ public class Voo {
         this.destino = destino;
         this.chegada = chegada;
         this.numeroParadas = numeroParadas;
+        this.distancia = distancia;
     }
 
     public String getLinha() {
@@ -82,16 +86,25 @@ public class Voo {
         this.numeroParadas = numeroParadas;
     }
 
+    public long getDistancia() {
+        return distancia;
+    }
+
+    public void setDistancia(long distancia) {
+        this.distancia = distancia;
+    }
+
     @Override
     public String toString() {
         return "Voo{" +
                 "linha='" + linha + '\'' +
                 ", voo='" + voo + '\'' +
-                ", origem=" + origem.getAirportName() +
+                ", origem=" + origem +
                 ", partida=" + partida +
-                ", destino=" + destino.getAirportName()+
+                ", destino=" + destino +
                 ", chegada=" + chegada +
                 ", numeroParadas=" + numeroParadas +
+                ", distancia=" + distancia +
                 '}';
     }
 
