@@ -87,9 +87,9 @@ public class Voo {
         return "Voo{" +
                 "linha='" + linha + '\'' +
                 ", voo='" + voo + '\'' +
-                ", origem=" + origem +
+                ", origem=" + origem.getAirportName() +
                 ", partida=" + partida +
-                ", destino=" + destino +
+                ", destino=" + destino.getAirportName()+
                 ", chegada=" + chegada +
                 ", numeroParadas=" + numeroParadas +
                 '}';
