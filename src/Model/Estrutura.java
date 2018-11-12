@@ -37,8 +37,8 @@ public class Estrutura {
     @Override
     public String toString() {
         return "Estrutura{" +
-                "rotas=" + rotas.getNome() +
-                ", voos=" + voos.getNome() +
+                "rotas=" + rotas.toString()+
+                ", voos=" + voos.toString() +
                 '}';
     }
 }

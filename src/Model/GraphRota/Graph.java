@@ -6,7 +6,6 @@ import java.util.Objects;
 
 public class Graph {
     private int id;
-    private String nome;
     private Map<String, Vertex> vertices;
     private List<Edges> arestas;
     /*
@@ -15,9 +14,8 @@ public class Graph {
     * */
     private boolean dirigido;
 
-    public Graph(int id, String nome, Map<String, Vertex> vertices, List<Edges> arestas, boolean dirigido) {
+    public Graph(int id, Map<String, Vertex> vertices, List<Edges> arestas, boolean dirigido) {
         this.id = id;
-        this.nome = nome;
         this.vertices = vertices;
         this.arestas = arestas;
         this.dirigido = dirigido;
@@ -38,13 +36,6 @@ public class Graph {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public Map<String, Vertex> getVertices() {
         return vertices;
@@ -88,7 +79,6 @@ public class Graph {
     public String toString() {
         return "GraphRota{" +
                 "id=" + id +
-                ", nome='" + nome + '\'' +
                 ", dirigido=" + dirigido +
                 '}';
     }
