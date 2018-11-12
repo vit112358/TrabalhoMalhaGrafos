@@ -1,5 +1,6 @@
 package Control.IO;
 
+import Control.GraphOP.Ponto;
 import Model.AuxStruct.Aeroporto;
 import Model.AuxStruct.Voo;
 import Model.Estrutura;
@@ -30,9 +31,9 @@ public class Leitura {
         String tipo;
         Map<String, Vertex> vertices = new HashMap<>();
         List<Edges> arestas = new ArrayList<>();
-        Graph rota = new Graph(1,"rotas", vertices, arestas,false);
+        Graph rota = new Graph(1, vertices, arestas);
         List<Voo> listaVoos = new ArrayList<>();
-        GraphVoo voos = new GraphVoo(2, "voos", listaVoos);
+        GraphVoo voos = new GraphVoo(2, listaVoos);
         Estrutura estruturaGrafos = new Estrutura();
         try {
             try (BufferedReader meuBuffer = new BufferedReader(new FileReader(caminho))) {
@@ -57,7 +58,8 @@ public class Leitura {
                                     }
                                     valores[4] = sb.toString();
                                 }
-                                Aeroporto a = new Aeroporto(valores[0], valores[1], Integer.parseInt(valores[2]),Integer.parseInt(valores[3]), valores[4]);
+                                Ponto p = new Ponto(Integer.parseInt(valores[2]),Integer.parseInt(valores[3]));
+                                Aeroporto a = new Aeroporto(valores[0], valores[1], p, valores[4]);
                                 Vertex vertice = new Vertex(a.getAbreviation(),a);
                                 vertices.put(a.getAbreviation(),vertice);
                             }

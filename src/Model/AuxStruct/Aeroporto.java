@@ -1,27 +1,25 @@
 package Model.AuxStruct;
 
+import Control.GraphOP.Ponto;
+
 public class Aeroporto {
 
     private String abreviation;
     private String timeZoneGMT;
-    private Integer xPosition;
-    private Integer yPosition;
+    private Ponto position;
     private String airportName;
 
     /**
      *
      * @param abreviation Airport abbreviation
      * @param timeZoneGMT Time Zone (offset from GMT)
-     * @param xPosition X coordinate on map
-     * @param yPosition Y coordinate on map
+     * @param position coordinate on map
      * @param airportName Name of City/Airport
      */
-    public Aeroporto(String abreviation, String timeZoneGMT, Integer xPosition, Integer yPosition,
-            String airportName) {
+    public Aeroporto(String abreviation, String timeZoneGMT, Ponto position, String airportName) {
         this.abreviation = abreviation;
         this.timeZoneGMT = timeZoneGMT;
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
+        this.position = position;
         this.airportName = airportName;
     }
 
@@ -44,20 +42,12 @@ public class Aeroporto {
         this.timeZoneGMT = timeZoneGMT;
     }
 
-    public Integer getxPosition() {
-        return xPosition;
+    public Ponto getPosition() {
+        return position;
     }
 
-    public void setxPosition(Integer xPosition) {
-        this.xPosition = xPosition;
-    }
-
-    public Integer getyPosition() {
-        return yPosition;
-    }
-
-    public void setyPosition(Integer yPosition) {
-        this.yPosition = yPosition;
+    public void setPosition(Ponto position) {
+        this.position = position;
     }
 
     public String getAirportName() {
@@ -72,11 +62,8 @@ public class Aeroporto {
     public String toString() {
         return "Aeroporto{" +
                 "abreviation='" + abreviation + '\'' +
-                ", xPosition=" + xPosition +
-                ", yPosition=" + yPosition +
+                ", Position=" + position.toString() +
                 ", airportName='" + airportName + '\'' +
                 '}';
     }
-
-
 }
