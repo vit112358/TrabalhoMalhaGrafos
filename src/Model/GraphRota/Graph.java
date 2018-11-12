@@ -8,24 +8,14 @@ public class Graph {
     private int id;
     private Map<String, Vertex> vertices;
     private List<Edges> arestas;
-    /*
-    * dirigido = true o grafo é dirigido
-    * caso o dirigido = false o grafo é não dirigido
-    * */
-    private boolean dirigido;
 
-    public Graph(int id, Map<String, Vertex> vertices, List<Edges> arestas, boolean dirigido) {
+    public Graph(int id, Map<String, Vertex> vertices, List<Edges> arestas) {
         this.id = id;
         this.vertices = vertices;
         this.arestas = arestas;
-        this.dirigido = dirigido;
     }
 
     public Graph() {
-    }
-
-    public Graph(boolean dirigido) {
-        this.dirigido = dirigido;
     }
 
     public int getId() {
@@ -53,21 +43,12 @@ public class Graph {
         this.arestas = arestas;
     }
 
-    public boolean isDirigido() {
-        return dirigido;
-    }
-
-    public void setDirigido(boolean dirigido) {
-        this.dirigido = dirigido;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Graph graph = (Graph) o;
-        return id == graph.id &&
-                dirigido == graph.dirigido;
+        return id == graph.id;
     }
 
     @Override
@@ -79,7 +60,6 @@ public class Graph {
     public String toString() {
         return "GraphRota{" +
                 "id=" + id +
-                ", dirigido=" + dirigido +
                 '}';
     }
 }

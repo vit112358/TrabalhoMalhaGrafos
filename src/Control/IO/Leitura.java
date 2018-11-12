@@ -31,7 +31,7 @@ public class Leitura {
         String tipo;
         Map<String, Vertex> vertices = new HashMap<>();
         List<Edges> arestas = new ArrayList<>();
-        Graph rota = new Graph(1, vertices, arestas,false);
+        Graph rota = new Graph(1, vertices, arestas);
         List<Voo> listaVoos = new ArrayList<>();
         GraphVoo voos = new GraphVoo(2, listaVoos);
         Estrutura estruturaGrafos = new Estrutura();

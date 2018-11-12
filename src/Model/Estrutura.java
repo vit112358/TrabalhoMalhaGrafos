@@ -14,7 +14,7 @@ public class Estrutura {
     }
 
     public Estrutura() {
-        this.rotas = new Graph(false);
+        this.rotas = new Graph();
         this.voos = new GraphVoo();
     }
 
