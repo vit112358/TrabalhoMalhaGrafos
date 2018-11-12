@@ -4,6 +4,8 @@ import Model.AuxStruct.Voo;
 import Model.Estrutura;
 import Model.GraphRota.Edges;
 
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,5 +43,21 @@ public class Controls {
             }
         }
         return voosDiretos;
+    }
+
+    /**
+     * Esta função Calcula a diferenca entre 2 horas
+     * @param a: Hora A
+     * @param b: Hora B
+     * @return A diferença entre 2 horas em minutos
+     */
+    public Long calculaDiferencaTempo(LocalTime a, LocalTime b){
+        Long result=(long)0;
+        if(a.toNanoOfDay()>b.toNanoOfDay()){
+            result = Duration.between(b,a).toMinutes();
+        }else{
+            result = Duration.between(a,b).toMinutes();
+        }
+        return result;
     }
 }

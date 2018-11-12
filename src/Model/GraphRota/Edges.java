@@ -6,13 +6,17 @@ public class Edges {
     private int id;
     private Vertex origem;
     private Vertex destino;
-    private Long peso;
+    private Long paradas;
+    private Long duracao;
+    private Long distancia;
 
-    public Edges(int id, Vertex origem, Vertex destino, Long peso) {
+    public Edges(int id, Vertex origem, Vertex destino) {
         this.id = id;
         this.origem = origem;
         this.destino = destino;
-        this.peso = peso;
+        this.paradas = (long) 0;
+        this.duracao = (long) 0;
+        this.distancia = (long) 0;
     }
 
     public Edges() {
@@ -42,25 +46,28 @@ public class Edges {
         this.destino = destino;
     }
 
-    public Long getPeso() {
-        return peso;
+    public Long getParadas() {
+        return paradas;
     }
 
-    public void setPeso(Long peso) {
-        this.peso = peso;
+    public void setParadas(Long paradas) {
+        this.paradas = paradas;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Edges edges = (Edges) o;
-        return id == edges.id;
+    public Long getDuracao() {
+        return duracao;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public void setDuracao(Long duracao) {
+        this.duracao = duracao;
+    }
+
+    public Long getDistancia() {
+        return distancia;
+    }
+
+    public void setDistancia(Long distancia) {
+        this.distancia = distancia;
     }
 
     @Override
@@ -69,7 +76,9 @@ public class Edges {
                 "id=" + id +
                 ", origem=" + origem.getAeroporto().getAirportName() +
                 ", destino=" + destino.getAeroporto().getAirportName() +
-                ", peso=" + peso +
+                ", paradas=" + paradas +
+                ", duracao=" + duracao +
+                ", distancia=" + distancia +
                 '}';
     }
 }

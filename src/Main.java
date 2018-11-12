@@ -4,7 +4,9 @@ import Model.AuxStruct.Voo;
 import Model.Estrutura;
 
 import java.io.File;
+import java.time.LocalTime;
 import java.util.List;
+import java.util.Locale;
 
 public class Main {
 
@@ -24,5 +26,9 @@ public class Main {
 
         System.out.println("Tamanho: "+ v.size());
 
+        LocalTime a = LocalTime.of(11,00);
+        LocalTime b = LocalTime.of(12,01);
+
+        System.out.println(c.calculaDiferencaTempo(b,a));
     }
 }
