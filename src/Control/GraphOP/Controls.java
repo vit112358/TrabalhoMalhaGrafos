@@ -24,8 +24,9 @@ public class Controls {
      *
      * Custo: O(1)
      */
-    public double distanciaPontos(Ponto a, Ponto b) {
-        return Math.sqrt(Math.pow((b.x - a.x), 2) + Math.pow((b.y - a.y), 2));
+    public long distanciaPontos(Ponto a, Ponto b) {
+        double aux = Math.sqrt(Math.pow((b.x - a.x), 2) + Math.pow((b.y - a.y), 2));
+        return (long) aux;
     }
 
     /**
