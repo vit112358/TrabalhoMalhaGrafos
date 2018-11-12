@@ -73,7 +73,7 @@ public class Interface extends JPanel {
         add(label1, "cell 0 1 2 1");
 
         //---- btn_rotas ----
-        btn_rotas.setText("Mostrar Rotas");
+        btn_rotas.setText("Mostrar Rota");
         add(btn_rotas, "cell 1 14");
 
         //---- btn_voos ----

@@ -1,4 +1,4 @@
-package Model.Graph;
+package Model.GraphRota;
 
 import java.util.Objects;
 
@@ -67,8 +67,8 @@ public class Edges {
     public String toString() {
         return "Edges{" +
                 "id=" + id +
-                ", origem=" + origem.getNomeAeroporto() +
-                ", destino=" + destino.getNomeAeroporto() +
+                ", origem=" + origem.getAeroporto().getAirportName() +
+                ", destino=" + destino.getAeroporto().getAirportName() +
                 ", peso=" + peso +
                 '}';
     }
