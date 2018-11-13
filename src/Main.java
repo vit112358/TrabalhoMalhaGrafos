@@ -30,7 +30,6 @@ public class Main {
         List<Aeroporto> aero = new ArrayList<>();
 
         for (Map.Entry<String, Vertex> aeroporo: e.getRotas().getVertices().entrySet()) {
-           //aero.add(aeroporo.getValue().getAeroporto());
             RotaManager.addAirport(aeroporo.getValue().getAeroporto());
         }
 
