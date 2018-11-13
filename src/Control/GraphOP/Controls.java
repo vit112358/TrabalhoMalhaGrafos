@@ -1,5 +1,6 @@
 package Control.GraphOP;
 
+import Model.AuxStruct.Aeroporto;
 import Model.AuxStruct.Voo;
 import Model.Estrutura;
 import Model.GraphRota.Edges;
@@ -52,13 +53,25 @@ public class Controls {
      * @param b: Hora B
      * @return A diferença entre 2 horas em minutos
      */
-    public Long calculaDiferencaTempo(LocalTime a, LocalTime b){
-        Long result=(long)0;
+    public long calculaDiferencaTempo(LocalTime a, LocalTime b){
+        long result=(long)0;
         if(a.toNanoOfDay()>b.toNanoOfDay()){
             result = Duration.between(b,a).toMinutes();
         }else{
             result = Duration.between(a,b).toMinutes();
         }
+        return result;
+    }
+
+    public Voo buscaVoo(List<Voo> voos, String origem, String destino){
+        Voo result = new Voo();
+        for (Voo v: voos
+             ) {
+            if(v.getOrigem().getAbreviation().equals(origem) && v.getDestino().getAbreviation().equals(destino)){
+                result = v;
+            }
+        }
+
         return result;
     }
 }
