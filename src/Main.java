@@ -52,6 +52,7 @@ public class Main {
                 case 2:
                     break;
                 case 3:
+                    c.menorCustoViagem(e.getVoos().getArestas(), "ABQ", "ATL");
                     break;
                 case 4:
                     break;
