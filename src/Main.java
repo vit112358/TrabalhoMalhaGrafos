@@ -48,5 +48,20 @@ public class Main {
         //Imprime a solução encontrada para o problema
         System.out.println("Solução:");
         System.out.println(p.getFittest());
+
+        System.out.println("==============Programa de Demonstração de Rotas Aéreas============================");
+        System.out.println("\n");
+        System.out.println("==============Por Vitor Fernandes e Patricia Pieroni==============================");
+        System.out.println("\n");
+        System.out.println("==================================Menu============================================");
+        System.out.println("==============1.1 -> Mostrar Rotas e Voos ========================================");
+        System.out.println("==============1.2 -> Mostrar Rota enre 2 aeroportos ==============================");
+        System.out.println("==============2 -> Mostrar Voos Diretos ==========================================");
+        System.out.println("==============3 -> Viagem de Menor Custo entre 2 destinos ========================");
+        System.out.println("==============4 -> Cobertura de Aeroportos =======================================");
+        System.out.println("==============5 -> Tempo Minímo ==================================================");
+
+        int op=-1;
+
     }
 }
