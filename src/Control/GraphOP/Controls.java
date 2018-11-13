@@ -73,21 +73,4 @@ public class Controls {
         }
         return result;
     }
-
-    public void montaRota(List<Voo> voos, Aeroporto origem){
-        List<Aeroporto> aeroportos = new ArrayList<>();
-        Aeroporto fim = new Aeroporto();
-        Aeroporto destino = new Aeroporto();
-        aeroportos.add(origem);
-        for (Voo v: voos){
-            if(v.getDestino().equals(origem)){
-                fim = origem;
-            }
-        }
-        for(Voo v: voos){
-
-        }
-
-
-    }
 }

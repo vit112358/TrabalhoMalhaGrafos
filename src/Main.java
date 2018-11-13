@@ -53,14 +53,29 @@ public class Main {
         System.out.println("==============Por Vitor Fernandes e Patricia Pieroni==============================");
         System.out.println("\n");
         System.out.println("==================================Menu============================================");
-        System.out.println("==============1.1 -> Mostrar Rotas e Voos ========================================");
-        System.out.println("==============1.2 -> Mostrar Rota enre 2 aeroportos ==============================");
+        System.out.println("==============11 -> Mostrar Rotas e Voos ========================================");
+        System.out.println("==============12 -> Mostrar Rota enre 2 aeroportos ==============================");
         System.out.println("==============2 -> Mostrar Voos Diretos ==========================================");
         System.out.println("==============3 -> Viagem de Menor Custo entre 2 destinos ========================");
         System.out.println("==============4 -> Cobertura de Aeroportos =======================================");
         System.out.println("==============5 -> Tempo Minímo ==================================================");
 
         int op=-1;
+
+        switch (op){
+            case 11:
+                break;
+            case 12:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+        }
 
     }
 }
