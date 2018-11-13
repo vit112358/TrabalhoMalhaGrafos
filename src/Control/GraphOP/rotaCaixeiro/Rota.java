@@ -35,6 +35,7 @@ public class Rota {
      * Cria uma rota aleatórioa
      */
     public void geraAleatorio(){
+        c = new Controls();
         for(int i = 0; i < RotaManager.numberOfAirports(); i++) {
             setCity(i, RotaManager.getAirport(i));
         }
@@ -75,8 +76,7 @@ public class Rota {
                 }
                 //Calcula a distancia entre duas cidades e soma ao comprimento total da rota
 
-                    tourDistance += c.distanciaPontos(fromAirport.getPosition(), destinationAirport.getPosition());
-
+                tourDistance += c.distanciaPontos(fromAirport.getPosition(), destinationAirport.getPosition());
             }
             distancia = tourDistance;
         }

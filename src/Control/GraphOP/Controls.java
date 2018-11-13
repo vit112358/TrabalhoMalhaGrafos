@@ -71,7 +71,6 @@ public class Controls {
                 result = v;
             }
         }
-
         return result;
     }
 }

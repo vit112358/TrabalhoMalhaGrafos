@@ -27,17 +27,6 @@ public class Main {
         Controls c = new Controls();
         List<Voo> v=c.buscaVoosDiretos(e);
 
-        for (Voo vo:v) {
-            System.out.println(vo.toString());
-        }
-
-        System.out.println("Tamanho: "+ v.size());
-
-        LocalTime a = LocalTime.of(11,00);
-        LocalTime b = LocalTime.of(12,01);
-
-        System.out.println(c.calculaDiferencaTempo(b,a));
-
         List<Aeroporto> aero = new ArrayList<>();
 
         for (Map.Entry<String, Vertex> aeroporo: e.getRotas().getVertices().entrySet()) {
