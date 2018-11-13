@@ -26,7 +26,7 @@ public class Controls {
      */
     public long distanciaPontos(Ponto a, Ponto b) {
         double aux = Math.sqrt(Math.pow((b.x - a.x), 2) + Math.pow((b.y - a.y), 2));
-        return (long) aux;
+        return (long) aux*10000;
     }
 
     /**
