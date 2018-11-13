@@ -1,5 +1,7 @@
 package Control.IO;
 
+import Control.GraphOP.Controls;
+import Control.GraphOP.Ponto;
 import Model.AuxStruct.Aeroporto;
 import Model.AuxStruct.Voo;
 import Model.Estrutura;
@@ -30,10 +32,11 @@ public class Leitura {
         String tipo;
         Map<String, Vertex> vertices = new HashMap<>();
         List<Edges> arestas = new ArrayList<>();
-        Graph rota = new Graph(1,"rotas", vertices, arestas,false);
+        Graph rota = new Graph(1, vertices, arestas);
         List<Voo> listaVoos = new ArrayList<>();
-        GraphVoo voos = new GraphVoo(2, "voos", listaVoos);
+        GraphVoo voos = new GraphVoo(2, listaVoos);
         Estrutura estruturaGrafos = new Estrutura();
+        Controls c = new Controls();
         try {
             try (BufferedReader meuBuffer = new BufferedReader(new FileReader(caminho))) {
                 String linha;
@@ -57,7 +60,8 @@ public class Leitura {
                                     }
                                     valores[4] = sb.toString();
                                 }
-                                Aeroporto a = new Aeroporto(valores[0], valores[1], Integer.parseInt(valores[2]),Integer.parseInt(valores[3]), valores[4]);
+                                Ponto p = new Ponto(Integer.parseInt(valores[2]),Integer.parseInt(valores[3]));
+                                Aeroporto a = new Aeroporto(valores[0], valores[1], p, valores[4]);
                                 Vertex vertice = new Vertex(a.getAbreviation(),a);
                                 vertices.put(a.getAbreviation(),vertice);
                             }
@@ -67,7 +71,7 @@ public class Leitura {
                                 String[] valores = linha.split("\\s+");
                                 Vertex origem = vertices.get(valores[0]);
                                 Vertex destino = vertices.get(valores[1]);
-                                Edges aresta = new Edges(arestas.size()+1,origem,destino, (long)0);
+                                Edges aresta = new Edges(arestas.size()+1,origem,destino);
                                 arestas.add(aresta);
                             }
                             break;
@@ -76,7 +80,10 @@ public class Leitura {
                                 String[] valores = linha.split("\\s+");
                                 LocalTime lt1 = converteStringToDateTime(valores[3]);
                                 LocalTime lt2 = converteStringToDateTime(valores[5]);
-                                Voo v = new Voo(valores[0],valores[1],findAeroporto(valores[2],vertices),lt1,findAeroporto(valores[4],vertices),lt2,Integer.parseInt(valores[7]));
+                                Aeroporto a1 = findAeroporto(valores[2],vertices);
+                                Aeroporto a2 = findAeroporto(valores[4],vertices);
+                                long distancia = c.distanciaPontos(a1.getPosition(),a2.getPosition());
+                                Voo v = new Voo(valores[0],valores[1],a1,lt1,a2,lt2,Integer.parseInt(valores[7]),distancia);
                                 listaVoos.add(v);
                             }
                             break;
@@ -118,8 +125,6 @@ public class Leitura {
         char[] parteHoras = hora.toCharArray();
         int pHora = 0;
         int pMin = 0;
-        String aux;
-        String aux1;
         if(parteHoras[parteHoras.length-1] == 'P'){
             if(Integer.parseInt(hora.substring(0,hora.length()-3))+12 == 24){
                 pHora = 0;
@@ -131,9 +136,7 @@ public class Leitura {
             pHora = Integer.parseInt(hora.substring(0,hora.length()-3));
             pMin = Integer.parseInt(hora.substring(hora.length()-3,hora.length()-1));
         }
-
-        LocalTime horaLT = LocalTime.of(pHora,pMin);
-        return horaLT;
+        return  LocalTime.of(pHora,pMin);
     }
 
     private Aeroporto findAeroporto(String codAeroporto, Map<String, Vertex> vertices){

@@ -9,12 +9,10 @@ import java.util.Objects;
 public class GraphVoo {
 
     private int id;
-    private String nome;
     private List<Voo> arestas;
 
-    public GraphVoo(int id, String nome, List<Voo> arestas) {
+    public GraphVoo(int id, List<Voo> arestas) {
         this.id = id;
-        this.nome = nome;
         this.arestas = arestas;
     }
 
@@ -29,14 +27,6 @@ public class GraphVoo {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public List<Voo> getArestas() {
         return arestas;
     }
@@ -49,7 +39,6 @@ public class GraphVoo {
     public String toString() {
         return "GraphVoo{" +
                 "id=" + id +
-                ", nome='" + nome + '\'' +
                 ", arestas=" + arestas +
                 '}';
     }
