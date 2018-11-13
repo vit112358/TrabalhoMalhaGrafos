@@ -21,24 +21,25 @@ public class Controls {
      * @param b: Segundo ponto ser calculado a distância;
      * @return o valor da distância entre dois Pontos retornado pela fórmula
      * ((x_final-x_inicial)^2+(y_final-y_inicial)^2)^(1/2)
-     *
+     * <p>
      * Custo: O(1)
      */
     public long distanciaPontos(Ponto a, Ponto b) {
         double aux = Math.sqrt(Math.pow((b.x - a.x), 2) + Math.pow((b.y - a.y), 2));
-        return (long) aux*10000;
+        return (long) aux * 10000;
     }
 
     /**
      * Esta função busca todos os voos diretos, ou seja que não tem escalas
+     *
      * @param voosRotas: Estrutura que simula os voos e as Rotas
      * @return lista dos Voos diretos
      */
-    public List<Voo> buscaVoosDiretos(Estrutura voosRotas){
+    public List<Voo> buscaVoosDiretos(Estrutura voosRotas) {
         List<Voo> voosDiretos = new ArrayList<>();
-        for(Edges edges: voosRotas.getRotas().getArestas()){
-            for(Voo v : voosRotas.getVoos().getArestas()){
-                if ((edges.getOrigem().getAeroporto().equals(v.getOrigem())) && (edges.getDestino().getAeroporto().equals(v.getDestino()))){
+        for (Edges edges : voosRotas.getRotas().getArestas()) {
+            for (Voo v : voosRotas.getVoos().getArestas()) {
+                if ((edges.getOrigem().getAeroporto().equals(v.getOrigem())) && (edges.getDestino().getAeroporto().equals(v.getDestino()))) {
                     voosDiretos.add(v);
                 }
             }
@@ -48,17 +49,84 @@ public class Controls {
 
     /**
      * Esta função Calcula a diferenca entre 2 horas
+     *
      * @param a: Hora A
      * @param b: Hora B
      * @return A diferença entre 2 horas em minutos
      */
-    public Long calculaDiferencaTempo(LocalTime a, LocalTime b){
-        Long result=(long)0;
-        if(a.toNanoOfDay()>b.toNanoOfDay()){
-            result = Duration.between(b,a).toMinutes();
-        }else{
-            result = Duration.between(a,b).toMinutes();
+    public Long calculaDiferencaTempo(LocalTime a, LocalTime b) {
+        Long result = (long) 0;
+        if (a.toNanoOfDay() > b.toNanoOfDay()) {
+            result = Duration.between(b, a).toMinutes();
+        } else {
+            result = Duration.between(a, b).toMinutes();
         }
         return result;
+    }
+
+
+    /**
+     * Retorna a viagem verificando tanto a menor distancia quanto a menor duracao,
+     * Retorna a viagem verificando apenas a menor distancia,
+     * Retorna a viagem verificando apenas a menor duracao;
+     *
+     * @param voos
+     * @param origem
+     * @param destino
+     * @return
+     */
+    public void menorCustoViagem(List<Voo> voos, String origem, String destino) {
+
+        long menorDistancia = 999999999;
+        long menorDist = 999999999;
+        long menorDuracao = 999999999;
+        long menorDur = 999999999;
+
+        List<Voo> viagens = new ArrayList<>();
+
+        Voo vooMenorDistancia = new Voo();
+        Voo vooMenorDuracao = new Voo();
+        Voo vooMenorDistanciaEDuracao = new Voo();
+
+        for (Voo voo : voos) {
+
+            if (voo.getOrigem().getAbreviation().equals(origem) &&
+                    voo.getDestino().getAbreviation().equals(destino)) {
+                viagens.add(voo);
+            }
+        }
+
+        // viagens partindo da origem e destino escolhidos
+        for (Voo viagem : viagens) {
+            if (viagem.getDistancia() < menorDistancia) {
+                menorDistancia = viagem.getDistancia();
+                vooMenorDistancia = viagem;
+            }
+
+            Long tempoViagem = calculaDiferencaTempo(viagem.getChegada(), viagem.getPartida());
+
+            if (tempoViagem < menorDuracao) {
+                menorDuracao = tempoViagem;
+                vooMenorDuracao = viagem;
+            }
+
+            if (viagem.getDistancia() < menorDist && tempoViagem < menorDur) {
+                menorDist = viagem.getDistancia();
+                menorDur = tempoViagem;
+                vooMenorDistanciaEDuracao = viagem;
+            }
+        }
+
+        System.out.println("Viagem menor distância e duração: " + vooMenorDistanciaEDuracao.toString());
+        System.out.println("Distância: " + vooMenorDistanciaEDuracao.getDistancia() + "km");
+        System.out.println("Duração: " + menorDur + " min");
+        System.out.println();
+        System.out.println("Viagem menor distância: " + vooMenorDistancia.toString());
+        System.out.println("Distância: " + vooMenorDistancia.getDistancia() + "km");
+        System.out.println();
+        System.out.println("Viagem menor duração: " + vooMenorDuracao.toString());
+        System.out.println("Duração: " + menorDur + " min");
+
+
     }
 }

@@ -6,7 +6,6 @@ import Model.Estrutura;
 import java.io.File;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.Locale;
 
 public class Main {
 
@@ -19,6 +18,7 @@ public class Main {
         Estrutura e = l.readFile(f);
         Controls c = new Controls();
         List<Voo> v=c.buscaVoosDiretos(e);
+        c.menorCustoViagem(e.getVoos().getArestas(), "ABQ", "ATL");
 
         for (Voo vo:v) {
             System.out.println(vo.toString());
